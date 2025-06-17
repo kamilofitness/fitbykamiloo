@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>fitbyKamilo</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 </head>
 <body>
   <header>
@@ -28,6 +29,17 @@
     <a href="https://instagram.com/kamilolifts" target="_blank" class="button instagram">Instagram</a>
   </section>
 
+  <section class="media">
+    <h3>Videos & Social Media</h3>
+    <p>Die eingebetteten Inhalte (YouTube, Instagram) werden nur angezeigt, wenn du Cookies zustimmst.</p>
+    <div id="youtube-placeholder">
+      <p><em>YouTube-Video wird nach Zustimmung geladen.</em></p>
+    </div>
+    <div id="instagram-placeholder">
+      <p><em>Instagram-Feed wird nach Zustimmung geladen.</em></p>
+    </div>
+  </section>
+
   <section class="kalender">
     <h3>Buche ein Training</h3>
     <iframe src="https://calendar.google.com/calendar/embed?src=yourcalendar%40gmail.com" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
@@ -43,7 +55,7 @@
 
   <section id="datenschutz" class="rechtliches">
     <h3>Datenschutzerklärung</h3>
-    <p>Diese Website verwendet keine Cookies und speichert keine personenbezogenen Daten. Bei Kontaktaufnahme über Instagram gelten die Datenschutzrichtlinien von Meta/Instagram.</p>
+    <p>Diese Website nutzt Dienste von Drittanbietern wie YouTube und Instagram. Diese können Cookies setzen. Du kannst im Cookie-Banner entscheiden, ob du dem zustimmst.</p>
   </section>
 
   <section id="impressum" class="rechtliches">
@@ -57,5 +69,31 @@
       Hinweis gemäß § 19 UStG: Es wird keine Umsatzsteuer erhoben.
     </p>
   </section>
+
+  <!-- Cookie Consent Script -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      palette: {
+        popup: { background: "#000" },
+        button: { background: "#f1d600" }
+      },
+      theme: "classic",
+      content: {
+        message: "Diese Website verwendet Cookies für YouTube & Instagram.",
+        dismiss: "OK",
+        link: "Mehr erfahren",
+        href: "#datenschutz"
+      },
+      onStatusChange: function(status) {
+        if (this.hasConsented()) {
+          document.getElementById("youtube-placeholder").innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>';
+          document.getElementById("instagram-placeholder").innerHTML = '<p><a href="https://www.instagram.com/kamilolifts/" target="_blank">Instagram-Feed ansehen</a></p>';
+        }
+      }
+    })
+  });
+  </script>
 </body>
 </html>
